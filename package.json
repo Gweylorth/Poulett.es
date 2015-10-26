@@ -1,0 +1,14 @@
+{
+	"name": "Kaamelo.tt",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"start": "node app.js"
+	},
+	"dependencies": {
+		"body-parser": "*",
+		"express": "*",
+		"jade": "*",
+		"jquery": "*"
+	}
+}

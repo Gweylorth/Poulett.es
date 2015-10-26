@@ -1,0 +1,147 @@
+/* MAIN */
+#main {
+    height: 100%;
+    display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    flex-direction: column;
+}
+
+header {
+    color:#428bca;
+    padding-bottom: 5px;
+    width: 100%;
+    background-color: #FFF;
+}
+#tags {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow-x: scroll;
+    overflow-y: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+#tag-content{
+    white-space:normal;
+}
+
+footer {
+    background: #eee;
+    color:#999;
+    width: 100%;
+    border-top: 1px solid #Ccc;
+}
+
+/* HEADER */
+.title {
+    font-size: 64px;
+    margin-bottom: 0px;
+    font-family: 'Lobster', cursive;
+    text-shadow: 0 1px 0 rgba(0,0,0,.5);
+}
+
+.tagline {
+    font-size: 16px;
+    color:#999;
+    margin-bottom: 0px;
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+
+}
+.big {
+   font-size: 20px;
+}
+
+.tag {
+    font-size: 4rem;
+    font-family: 'Lobster', cursive;
+    cursor: pointer;
+}
+/* PLAYER */
+.bubble {
+    padding: 0;
+}
+
+.bubble .close {
+    font-size: 3rem;
+    color: #fff;
+    text-shadow: 0 1px 0 #000;
+}
+
+
+#bubble-toolbar {
+    width: 100%;
+    height: 5rem;
+    line-height: 5rem;
+}
+#bubble-toolbar a{
+    color:rgba(255,255,255,.66);
+    font-size: 2rem;
+}
+#bubble-toolbar a:hover{
+    font-size: 3rem;
+}
+.replique-tag {
+    color: #FFF;
+    font-size: 4rem;
+    font-family: 'Lobster', cursive;
+}
+.citation {
+    font-size: 3rem;
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+    color: #fff;
+}
+.citation:before{
+    content: 'â€œ';
+}
+.citation:after {
+    content: 'â€';
+}
+
+/* Footer */
+
+footer .btn {
+    color:#999;
+    background: none;
+}
+footer .btn:hover {
+    color:#666;
+}
+
+/* #a0c5e4 */
+/* Override Bootstrap */
+.btn {
+    color: #fff;
+    border: none;
+    background-color: #ccc;
+}
+a:hover {
+    color: rgba(120,120,120,.5);
+}
+.media:first-child {
+    margin-top: 15px;
+}
+*:focus {
+    outline: 0;
+    text-decoration: none;
+}
+/* Fix for aligning FB and TW btns */
+.fb_iframe_widget span
+{
+    vertical-align: baseline !important;
+}
+
+@media (min-width: 768px) {
+    .tag {
+        font-size: 6rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    .replique-tag {
+        font-size: 6rem;
+    }
+
+
+    .bubble .close {
+        font-size: 5rem;
+    }
