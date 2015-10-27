@@ -1,6 +1,6 @@
-var kaamelott = angular.module('kaamelott', [])
+var poulettes = angular.module('poulettes', [])
 
-kaamelott.controller('IndexController',
+poulettes.controller('IndexController',
     function($scope, IndexModel) {
         var currentAudio, currentAudioName, quotes;
         $scope.currentQuote = "";
@@ -58,7 +58,7 @@ kaamelott.controller('IndexController',
     }
 );
 
-kaamelott.service('IndexModel',
+poulettes.service('IndexModel',
     function($http){
         return {
             listAllOggFiles : function(callback) {
