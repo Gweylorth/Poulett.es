@@ -22,7 +22,7 @@ poulettes.controller('IndexController',
         function playSound (name) {
             currentAudioName = name;
             currentAudio = new Audio('/sounds/' + name + '.ogg');
-            currentAudio.ended = function() {
+            currentAudio.onended = function() {
                 stopSound();
             };
             currentAudio.play();
