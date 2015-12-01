@@ -1,14 +1,34 @@
 var poulettes = angular.module('poulettes', [])
 
+poulettes.config(['$locationProvider',
+    function($locationProvider) {
+        $locationProvider.html5mode = true;
+    }
+]);
+
 poulettes.controller('IndexController',
-    function($scope, IndexModel) {
+    function($scope, $location, $timeout, IndexModel) {
+
         var currentAudio, currentAudioName, quotes;
         $scope.currentQuote = "";
 
+        var titles = ["Le seul site fort en pommes.",
+        "Parce que c'est bon pour la santé du cigare."];
+        $scope.randomTitle = titles[Math.floor(Math.random() * titles.length)];
+
         listAllOggFiles();
         getQuotes();
+        handleHash();
 
-        $scope.clicTag = function (name) {
+        $scope.$on('$locationChangeSuccess', function(event) {
+            handleHash();
+        })
+
+        $scope.clickTag = function (name) {
+            clickTag(name);
+        }
+
+        function clickTag (name)  {
             if (currentAudioName === name) {
                 stopSound();
                 return;
@@ -17,6 +37,16 @@ poulettes.controller('IndexController',
             }
             playSound(name);
             $scope.currentQuote = quotes[name];
+        }
+
+        function handleHash () {
+            $timeout(function() {
+                var hash = $location.search();
+                if (hash !== undefined && hash.length > 0)
+                {
+                    clickTag(Object.keys(hash)[0]);
+                }
+            }, 0, false);
         }
 
         function playSound (name) {

@@ -16,12 +16,12 @@ html(ng-app="poulettes")
     .container
         .jumbotron
             h1 Poulett.es
-            h2 Morceaux Choisis de la série Kaamelott
+            h2 {{randomTitle}}
             
         .row
             p {{currentQuote}}
         
         .row 
-            a(ng-repeat="file in files" href="\#{{file}}" id="{{file}}" class="tag" ng-click="clicTag(file)") \#{{file}}
+            a(ng-repeat="file in files" href="\#?{{file}}" id="{{file}}" class="tag" ng-click="clickTag(file)") \#{{file}}
         
     footer
