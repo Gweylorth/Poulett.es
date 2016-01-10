@@ -1,3 +1,38 @@
+@font-face {
+    font-family: 'Bilbo';
+    src: url('fonts/bilbo-regular-webfont.eot');
+    src: url('fonts/bilbo-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/bilbo-regular-webfont.woff2') format('woff2'),
+         url('fonts/bilbo-regular-webfont.woff') format('woff'),
+         url('fonts/bilbo-regular-webfont.ttf') format('truetype'),
+         url('fonts/bilbo-regular-webfont.svg#bilboregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Almendra';
+    src: url('fonts/almendra-regular-webfont.eot');
+    src: url('fonts/almendra-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/almendra-regular-webfont.woff2') format('woff2'),
+         url('fonts/almendra-regular-webfont.woff') format('woff'),
+         url('fonts/almendra-regular-webfont.ttf') format('truetype'),
+         url('fonts/almendra-regular-webfont.svg#almendraregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'KingThings';
+    src: url('fonts/Kingthings_Calligraphica_2-webfont.eot');
+    src: url('fonts/Kingthings_Calligraphica_2-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Kingthings_Calligraphica_2-webfont.woff') format('woff'),
+         url('fonts/Kingthings_Calligraphica_2-webfont.ttf') format('truetype'),
+         url('fonts/Kingthings_Calligraphica_2-webfont.svg#kingthings_calligraphica_2Rg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* MAIN */
 #main {
     height: 100%;
@@ -10,11 +45,11 @@ header {
     padding-bottom: 5px;
     width: 100%;
     background-color: #FFF;
+    text-align: center;
 }
 #tags {
     -webkit-flex: 1;
     flex: 1;
-    overflow-x: scroll;
     overflow-y: none;
     -webkit-overflow-scrolling: touch;
 }
@@ -34,7 +69,7 @@ footer {
 .title {
     font-size: 64px;
     margin-bottom: 0px;
-    font-family: 'Lobster', cursive;
+    font-family: 'KingThings', cursive;
     text-shadow: 0 1px 0 rgba(0,0,0,.5);
 }
 
@@ -43,8 +78,7 @@ footer {
     color:#999;
     margin-bottom: 0px;
     font-style: italic;
-    font-family: 'Playfair Display', serif;
-
+    font-family: serif;
 }
 .big {
    font-size: 20px;
@@ -52,7 +86,7 @@ footer {
 
 .tag {
     font-size: 4rem;
-    font-family: 'Lobster', cursive;
+    font-family: 'Almendra', cursive;
     cursor: pointer;
 }
 /* PLAYER */
@@ -65,7 +99,6 @@ footer {
     color: #fff;
     text-shadow: 0 1px 0 #000;
 }
-
 
 #bubble-toolbar {
     width: 100%;
@@ -82,19 +115,13 @@ footer {
 .replique-tag {
     color: #FFF;
     font-size: 4rem;
-    font-family: 'Lobster', cursive;
+    font-family: 'Almendra', sans-serif;
 }
 .citation {
     font-size: 3rem;
     font-style: italic;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Bilbo', serif;
     color: #fff;
-}
-.citation:before{
-    content: 'â€œ';
-}
-.citation:after {
-    content: 'â€';
 }
 
 /* Footer */
