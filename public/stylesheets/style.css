@@ -47,11 +47,13 @@ header {
     background-color: #FFF;
     text-align: center;
 }
+
 #tags {
     -webkit-flex: 1;
     flex: 1;
     overflow-y: none;
     -webkit-overflow-scrolling: touch;
+    margin: 10px;
 }
 
 #tag-content{
@@ -89,6 +91,7 @@ footer {
     font-family: 'Almendra', cursive;
     cursor: pointer;
 }
+
 /* PLAYER */
 .bubble {
     padding: 0;
@@ -112,16 +115,30 @@ footer {
 #bubble-toolbar a:hover{
     font-size: 3rem;
 }
-.replique-tag {
+
+.quote-content {
+    margin-top: 2em;
+    text-align: center;
+}
+
+.quote-tag {
     color: #FFF;
     font-size: 4rem;
     font-family: 'Almendra', sans-serif;
 }
-.citation {
+.quote {
     font-size: 3rem;
     font-style: italic;
-    font-family: 'Bilbo', serif;
+    font-family: 'KingThings', serif;
     color: #fff;
+}
+
+.quote::before {
+    content: "“";
+}
+
+.quote::after {
+    content: "”";
 }
 
 /* Footer */

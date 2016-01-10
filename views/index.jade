@@ -2,7 +2,7 @@ doctype html
 
 html(ng-app="poulettes")
   head
-    title= "Poulett.es"
+    title= "Poulett!es"
     meta(charset='UTF-8')
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
     script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js')
@@ -17,14 +17,15 @@ html(ng-app="poulettes")
         var hashTagQuote = !{tagQuote}
         
   body(ng-controller="IndexController")
-    .container
+    .container-fluid
         header
-            p.title Poulett.es
+            p.title Poulett!es
             p.tagline.big {{randomTitle}}
             p.tagline Extraits de la série Kaamelott.
             
-        .row(ng-if="currentQuote !== ''")
-            p {{currentQuote}}
+        .row.quote-content(ng-if="currentQuote !== ''" style="background-color: {{colors[currentTag]}}")
+            span.quote-tag \#{{currentTag}}
+            .quote {{currentQuote}}
         
         .row
             #tags

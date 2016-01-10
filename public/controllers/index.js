@@ -9,6 +9,7 @@ poulettes.config(['$locationProvider',
 poulettes.controller('IndexController',
     function($scope, $window, $location, IndexModel) {
         var currentAudio, currentAudioName, quotes;
+        $scope.currentTag = "";
         $scope.currentQuote = "";
         $scope.share = "";
 
@@ -38,6 +39,8 @@ poulettes.controller('IndexController',
                 stopSound();
             }
             playSound(name);
+
+            $scope.currentTag = name;
             if (quote === undefined){
                 $scope.currentQuote = quotes[name];
             } else {
