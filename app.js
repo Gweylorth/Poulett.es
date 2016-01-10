@@ -14,7 +14,17 @@ app.set('view engine', 'jade');
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res) {
-    res.render('index');
+    res.render('index', {
+        tagId: '""',
+        tagQuote: '""',
+    });
+});
+
+app.get('/:tagId', function(req, res) {
+    res.render('index', {
+        tagId: '"' + req.params.tagId + '"',
+        tagQuote: '"' + quotes['quotes'][req.params.tagId] + '"'
+    });
 });
 
 app.get('/api/listAllOggFiles/', function(req, res) {

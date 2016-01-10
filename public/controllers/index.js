@@ -7,28 +7,30 @@ poulettes.config(['$locationProvider',
 ]);
 
 poulettes.controller('IndexController',
-    function($scope, $location, $timeout, IndexModel) {
-
+    function($scope, $window, $location, IndexModel) {
         var currentAudio, currentAudioName, quotes;
         $scope.currentQuote = "";
+        $scope.share = "";
 
         var titles = ["Le seul site fort en pommes.",
         "Parce que c'est bon pour la santé du cigare."];
         $scope.randomTitle = titles[Math.floor(Math.random() * titles.length)];
 
         listAllOggFiles();
-        getQuotes();
-        handleHash();
 
-        $scope.$on('$locationChangeSuccess', function(event) {
-            handleHash();
-        })
+        IndexModel.getQuotes(function(data) {
+            quotes = data;
+        });
+
+        if ($window.hashTagId != "") {
+            clickTag($window.hashTagId, $window.hashTagQuote);
+        }
 
         $scope.clickTag = function (name) {
             clickTag(name);
         }
 
-        function clickTag (name)  {
+        function clickTag (name, quote)  {
             if (currentAudioName === name) {
                 stopSound();
                 return;
@@ -36,17 +38,12 @@ poulettes.controller('IndexController',
                 stopSound();
             }
             playSound(name);
-            $scope.currentQuote = quotes[name];
-        }
-
-        function handleHash () {
-            $timeout(function() {
-                var hash = $location.search();
-                if (hash !== undefined && hash.length > 0)
-                {
-                    clickTag(Object.keys(hash)[0]);
-                }
-            }, 0, false);
+            if (quote === undefined){
+                $scope.currentQuote = quotes[name];
+            } else {
+                $scope.currentQuote = quote;
+            }
+            //$location.path(name).replace();
         }
 
         function playSound (name) {
@@ -77,13 +74,16 @@ poulettes.controller('IndexController',
         function listAllOggFiles() {
             IndexModel.listAllOggFiles(function(data) {
                 $scope.files = data;
+                $scope.colors = assignColors(data);
             });
         }
 
-        function getQuotes() {
-            IndexModel.getQuotes(function(data) {
-                quotes = data;
-            });
+        function assignColors(files) {
+            var colors = [];
+            for (var i = 0; i < files.length; i++) {
+                colors[files[i]] = randomColor();
+            }
+            return colors;
         }
     }
 );
@@ -91,6 +91,7 @@ poulettes.controller('IndexController',
 poulettes.service('IndexModel',
     function($http){
         return {
+
             listAllOggFiles : function(callback) {
                 $http.get('/api/listAllOggFiles/').success(
                     function(data, status, headers, config) {
