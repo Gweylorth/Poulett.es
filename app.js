@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var http = require('http');
 var path = require('path');
 var fs = require('fs');
-var quotes = require(path.join(__dirname, 'lib', 'quotes'))
+var database = require(path.join(__dirname, 'lib', 'database'))
 
 var app = express();
 
@@ -15,34 +15,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res) {
     res.render('index', {
-        tagId: '""',
-        tagQuote: '""',
+        character: '""',
+        quoteId: '""',
     });
 });
 
-app.get('/:tagId', function(req, res) {
+app.get('/:character.:quoteId', function(req, res) {
     res.render('index', {
-        tagId: '"' + req.params.tagId + '"',
-        tagQuote: '"' + quotes['quotes'][req.params.tagId] + '"'
-    });
-});
-
-app.get('/api/listAllOggFiles/', function(req, res) {
-    fs.readdir('public/sounds/', function(err, files) {
-        if (err) {
-            throw err;
-        }
-
-        var filenames = [];
-        for (var i = 0; i < files.length; i++) {
-            filenames.push(files[i].split('.')[0]);
-        }
-        res.json(filenames);
+        character: '"' + req.params.character + '"',
+        quoteId: '"' + req.params.quoteId + '"',
     });
 });
 
 app.get('/api/getQuotes/', function(req, res) {
-    res.json(quotes);
+    res.json(database);
 });
 
 http.createServer(app).listen(app.get('port'), function() {

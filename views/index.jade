@@ -13,22 +13,23 @@ html(ng-app="poulettes")
         base(href="/")
 
         script(type='text/javascript').
-            var hashTagId = !{tagId}
-            var hashTagQuote = !{tagQuote}
+            var character = !{character}
+            var quoteId = !{quoteId}
 
     body(ng-controller="IndexController")
         .container-fluid
             header
                 p.title Poulett!es
                 p.tagline.big {{randomTitle}}
-                p.tagline Extraits de la série Kaamelott.
 
-            .row.quote-content(ng-if="currentQuote !== ''" style="background-color: {{colors[currentTag]}}")
-                span.quote-tag \#{{currentTag}}
-                .quote {{currentQuote}}
-
-            .row
-                #tags
-                    a(ng-repeat="file in files" id="{{file}}" class="tag" ng-click="clickTag(file)" style="color: {{colors[file]}}") \#{{file}}
-
+            nav
+                .row
+                    #accordion(aria-multiselectable="true")
+                        div(ng-repeat="(character, info) in database")
+                            a(data-toggle="collapse" data-parent="#accordion" href="\#{{character}}" aria-controls="{{character}}" aria-expanded="false") {{character}}
+                            div(id="{{character}}" class="collapse")
+                                p(ng-repeat="(id, quote) in info.quotes")
+                                    a(ng-click="clickQuoteId(character, id)") {{id}}
+            div
+                p(ng-repeat="quote in playedQuotes") {{quote}}
         footer
