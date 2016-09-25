@@ -1,11 +1,5 @@
 var poulettes = angular.module('poulettes', [])
 
-poulettes.config(['$locationProvider',
-    function($locationProvider) {
-        $locationProvider.html5mode = true;
-    }
-]);
-
 poulettes.controller('IndexController',
     function($scope, $window, $location, IndexModel) {
         var currentAudio, currentAudioName, quotes;
@@ -14,7 +8,8 @@ poulettes.controller('IndexController',
         $scope.share = "";
 
         var titles = ["Le seul site fort en pommes.",
-        "Parce que c'est bon pour la santé du cigare."];
+            "Parce que c'est bon pour la santé du cigare."
+        ];
         $scope.randomTitle = titles[Math.floor(Math.random() * titles.length)];
 
         listAllOggFiles();
@@ -24,14 +19,14 @@ poulettes.controller('IndexController',
         });
 
         if ($window.hashTagId != "") {
-            clickTag($window.hashTagId, $window.hashTagQuote);
+            playOnLoad($window.hashTagId, $window.hashTagQuote);
         }
 
-        $scope.clickTag = function (name) {
-            clickTag(name);
+        $scope.clickTag = function(name) {
+            $window.location.href = "/" + name;
         }
 
-        function clickTag (name, quote)  {
+        function playOnLoad(name, quote) {
             if (currentAudioName === name) {
                 stopSound();
                 return;
@@ -41,15 +36,14 @@ poulettes.controller('IndexController',
             playSound(name);
 
             $scope.currentTag = name;
-            if (quote === undefined){
+            if (quote === undefined) {
                 $scope.currentQuote = quotes[name];
             } else {
                 $scope.currentQuote = quote;
             }
-            //$location.path(name).replace();
         }
 
-        function playSound (name) {
+        function playSound(name) {
             currentAudioName = name;
             currentAudio = new Audio('/sounds/' + name + '.ogg');
             currentAudio.onended = function() {
@@ -59,13 +53,14 @@ poulettes.controller('IndexController',
         }
 
         function randomColor() {
-            var colors = ["#d7757e","#9a8e00","#2b5764","#b80f2b","#f2c436",
-            "#8b95db","#b1f01f","#a1958c","#33ae8a","#f732e7","#a76fa8",
-            "#e49c6d","#1abffa","#ae2862","#a753f6","#a8ea28"];
-            return colors[Math.floor(Math.random()*colors.length)];
+            var colors = ["#d7757e", "#9a8e00", "#2b5764", "#b80f2b", "#f2c436",
+                "#8b95db", "#b1f01f", "#a1958c", "#33ae8a", "#f732e7", "#a76fa8",
+                "#e49c6d", "#1abffa", "#ae2862", "#a753f6", "#a8ea28"
+            ];
+            return colors[Math.floor(Math.random() * colors.length)];
         }
 
-        function stopSound(){
+        function stopSound() {
             currentAudioName = null;
             if (currentAudio == null) {
                 return;
@@ -92,10 +87,10 @@ poulettes.controller('IndexController',
 );
 
 poulettes.service('IndexModel',
-    function($http){
+    function($http) {
         return {
 
-            listAllOggFiles : function(callback) {
+            listAllOggFiles: function(callback) {
                 $http.get('/api/listAllOggFiles/').success(
                     function(data, status, headers, config) {
                         callback(data);
@@ -103,7 +98,7 @@ poulettes.service('IndexModel',
                 )
             },
 
-            getQuotes : function(callback) {
+            getQuotes: function(callback) {
                 $http.get('/api/getQuotes/').success(
                     function(data, status, headers, config) {
                         callback(data['quotes']);

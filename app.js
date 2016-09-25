@@ -28,7 +28,7 @@ app.get('/:tagId', function(req, res) {
 });
 
 app.get('/api/listAllOggFiles/', function(req, res) {
-    fs.readdir('public/sounds/', function(err, files){
+    fs.readdir('public/sounds/', function(err, files) {
         if (err) {
             throw err;
         }
@@ -41,10 +41,10 @@ app.get('/api/listAllOggFiles/', function(req, res) {
     });
 });
 
-app.get('/api/getQuotes/', function(req, res){
+app.get('/api/getQuotes/', function(req, res) {
     res.json(quotes);
 });
 
-http.createServer(app).listen(app.get('port'), function(){
-	console.log('Express server up and running. Listening on port ' + app.get('port'));
+http.createServer(app).listen(app.get('port'), function() {
+    console.log('Express server up and running. Listening on port ' + app.get('port'));
 });
